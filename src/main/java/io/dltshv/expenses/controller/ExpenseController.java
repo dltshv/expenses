@@ -26,6 +26,11 @@ public class ExpenseController {
         return expenseService.getExpenseById(id);
     }
 
+    @GetMapping("/expenses-by-category/{categoryId}")
+    public List<Expense> getExpenseByCategory(@PathVariable("categoryId") String categoryId) {
+        return expenseService.getExpensesByCategoryId(categoryId);
+    }
+
     @DeleteMapping("/expense/{id}")
     public ResponseEntity deleteExpenseById(@PathVariable("id") String id) {
         expenseService.deleteExpenseById(id);

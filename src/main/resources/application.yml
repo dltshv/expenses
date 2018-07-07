@@ -2,3 +2,4 @@ spring:
   data:
     mongodb:
       port: 10001
+      database: expenses

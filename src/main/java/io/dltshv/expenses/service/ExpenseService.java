@@ -31,4 +31,8 @@ public class ExpenseService {
     public void deleteExpenseById(String id) {
         expenseRepository.deleteById(id);
     }
+
+    public List<Expense> getExpensesByCategoryId(String categoryId) {
+        return expenseRepository.findAllByCategory(categoryId);
+    }
 }
