@@ -4,6 +4,7 @@ import io.dltshv.expenses.entity.Expense;
 import io.dltshv.expenses.enums.ExpenseType;
 import io.dltshv.expenses.service.ExpenseService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -29,15 +30,19 @@ public class ExpenseController {
     }
 
     @GetMapping(path = "/expense", params = {"start", "end"})
-    public List<Expense> getAllExpensesByDatesInterval(@RequestParam LocalDateTime start,
-                                                       @RequestParam LocalDateTime end) {
+    public List<Expense> getAllExpensesByDatesInterval(
+            @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime start,
+            @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime end
+    ) {
         return expenseService.getAllExpensesByDatesInterval(start, end);
     }
 
     @GetMapping(path = "/expense", params = {"type", "start", "end"})
-    public List<Expense> getAllExpensesByTypeAndDatesInterval(@RequestParam ExpenseType type,
-                                                              @RequestParam LocalDateTime start,
-                                                              @RequestParam LocalDateTime end) {
+    public List<Expense> getAllExpensesByTypeAndDatesInterval(
+            @RequestParam ExpenseType type,
+            @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime start,
+            @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime end
+    ) {
         return expenseService.getAllExpensesByTypeAndDatesInterval(type, start, end);
     }
 
